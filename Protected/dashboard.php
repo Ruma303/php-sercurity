@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); //* Recuperiamo le variabili di sessione
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php"); //! Reindirizza al login se non è loggato
@@ -7,11 +7,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    //! Reindirizza alla pagina di errore 403 se non autorizzato
+    //! Reindirizza alla pagina di errore 403 se non autorizzato SOLO come admin
     header("Location: ../View/page403.php");
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +35,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <a href="../logout.php" class="text-md text-red-600 font-semibold rounded border-2 py-[.2em] px-2 hover:bg-red-500 hover:text-white">Logout</a>
         </div>
 
-        <article class="rounded flex flex-col justify-between p-8 bg-neutral-100 gap-2 shadow-xl shadow-red-600">
+        <article class="rounded flex flex-col justify-between p-8 bg-neutral-100 gap-2 shadow-xl shadow-emerald-600">
             <h2 class="text-xl text-red-600 font-semibold">Contenuto visibile solo dagli admins</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda voluptatem itaque quibusdam dolore doloremque sunt, labore fugit officia recusandae qui eos nemo, id facilis temporibus, eum nisi voluptates quisquam nesciunt!</p>
         </article>

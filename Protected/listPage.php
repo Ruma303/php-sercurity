@@ -1,5 +1,16 @@
 <?php
+session_start(); //* Recuperiamo le variabili di sessione
 
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php"); //! Reindirizza al login se non è loggato
+    exit;
+}
+
+if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'editor' && $_SESSION['role'] !== 'admin')) {
+    //! Reindirizza alla pagina di errore 403 se non autorizzato come editor o admin
+    header("Location: ../View/page403.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +35,7 @@
             <a href="../logout.php" class="text-md text-red-600 font-semibold rounded border-2 py-[.2em] px-2 hover:bg-red-500 hover:text-white">Logout</a>
         </div>
 
-        <article class="rounded flex flex-col justify-between p-8 bg-neutral-100 gap-2 shadow-xl shadow-neutral-200">
+        <article class="rounded flex flex-col justify-between p-8 bg-neutral-100 gap-2 shadow-xl shadow-orange-600">
             <h2 class="text-xl text-sky-600 font-semibold">Contenuto visibile solo dagli <span class="text-md text-orange-600 font-semibold">editors</span> e dagli <span class="text-md text-emerald-600 font-semibold">admins</span></h2>
             <ul>
                 <li>Risorsa 1</li>
