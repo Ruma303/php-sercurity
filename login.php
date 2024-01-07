@@ -2,7 +2,7 @@
 //* Avviare o recuperare una sessione
 session_start();
 //* Includere il file per la connessione al database
-include './connect.php';
+include './Utils/connect.php';
 
 //? Controllare se il form è stato inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,20 +14,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
-    //! Verifica della password de l'utente è stato trovato
     if ($user) {
         if (password_verify($password, $user['password'])) {
-            //* Impostare la sessione o il cookie qui
             $_SESSION['user_id'] = $user['id'];
-            //? Reindirizzamento alla risorsa protetta
+            //! Aggiungiamo una nuova variabile di sessione per il ruolo
+            $_SESSION['role'] = $user['ruolo'];
             header("Location: index.php");
             exit;
         } else {
-            //! Gestire l'errore di autenticazione
             echo "Password errata!";
         }
     } else {
-        //! Gestire l'errore "Utente non trovato"
         echo "Nessun utente trovato con questa email!";
     }
 }

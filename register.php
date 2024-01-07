@@ -1,6 +1,6 @@
 <?php
 //* Includere il file per la connessione al database
-include_once './connect.php';
+include_once './Utils/connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //! Recuperare i dati dal form
