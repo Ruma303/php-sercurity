@@ -1,15 +1,5 @@
 <?php
-//* Avviare o recuperare una sessione
-/* session_start();
-//* Includere il file per la connessione al database
-include './Utils/connect.php';
 
-//? Verificare se l'utente è autenticato
-if (!isset($_SESSION['user_id'])) {
-    //! Se non è autenticato, reindirizzarlo alla pagina di login
-    header("Location: ../login.php");
-    exit;
-} */
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,15 +1,11 @@
 <?php
-//* Avviare o recuperare una sessione
 session_start();
-//* Includere il file per la connessione al database
 include './Utils/connect.php';
 
-//? Controllare se il form è stato inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    //! Cercare l'utente nel database usando l'email
     $stmt = $conn->prepare("SELECT * FROM utenti WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
